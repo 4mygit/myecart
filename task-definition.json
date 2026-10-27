@@ -1,0 +1,29 @@
+{
+  "family": "my-web-app-task",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "executionRoleArn": "arn:aws:iam::927001279165:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "my-web-app",
+      "image": "927001279165.dkr.ecr.ap-south-1.amazonaws.com/my-web-app:latest",
+      "portMappings": [
+        {
+          "containerPort": 3000,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/my-web-app",
+          "awslogs-region": "ap-south-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ]
+}
